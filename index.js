@@ -24,6 +24,15 @@ app.listen(port , ()=>{
 // step 05 : Run Terminal / nodemon index.js
 // step 06 : Install Thunder Client
 
+// Javascript Client Side rendering
+// Node.js Server Side rendering
+
+
+
+
+
+
+
 
 
 
