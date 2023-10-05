@@ -1,17 +1,19 @@
 const express = require('express');
 const app = express();
 
-
-const port = 2000;
+const port = 3000;
+const obj = {
+    status : 2,
+    message : 'This is Node Js'
+}
 
 app.get('/' , (req , res ) => {
-     res.send('Hello World nodemon!'); 
+     res.send('Status : ' + obj.status + ' Message : ' + obj.message);
 });
 
 app.listen(port , ()=>{
     console.log(`Terminal Run is ${port}`);
 });
-
 
 // asynchronous / non-blocking 
 // synchronous  / blocking 
