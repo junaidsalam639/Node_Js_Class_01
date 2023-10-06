@@ -7,13 +7,13 @@ const obj = {
     message : 'This is Node Js'
 }
 
-app.get('/' , (req , res ) => {
-     res.send('Status : ' + obj.status + ' Message : ' + obj.message);
+app.get('/' , (request , response)  => {
+   response.send('Hello I am Nodeman I am Object ' + obj.message);
 });
 
 app.listen(port , ()=>{
-    console.log(`Terminal Run is ${port}`);
-});
+    console.log('Terminal Is On ' + port);
+})
 
 // asynchronous / non-blocking 
 // synchronous  / blocking 
