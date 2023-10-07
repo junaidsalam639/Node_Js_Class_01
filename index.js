@@ -3,6 +3,12 @@ const app = express();
 const userRoutes = require('./router/user');
 const morgan = require('morgan');
 const port = 3000;
+
+app.use(morgan('tiny'));
+app.use(express.json());
+app.use('/user' , userRoutes);
+
+
 const middleware = (request , response , next) => {
     console.log('I am Middleware');
     next();
@@ -15,9 +21,6 @@ app.get('/' , (request , response)  => {
 });
 });
 
-app.use('/user' , userRoutes);
-app.use(morgan('tiny'));
-app.use(express.json());
 
 //Dynamic id / params
 app.get('/:id' , (request , response)  => {
