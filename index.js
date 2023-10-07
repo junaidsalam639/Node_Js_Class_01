@@ -1,19 +1,46 @@
 const express = require('express');
 const app = express();
-
+const userRoutes = require('./router/user');
+const morgan = require('morgan');
 const port = 3000;
-const obj = {
-    status : 2,
-    message : 'This is Node Js'
+const middleware = (request , response , next) => {
+    console.log('I am Middleware');
+    next();
 }
 
 app.get('/' , (request , response)  => {
-   response.send('Hello I am Nodeman I am Object ' + obj.message);
+   response.send({
+    status : 200,
+    message : 'This is Node Js'
 });
+});
+
+app.use('/user' , userRoutes);
+app.use(morgan('tiny'));
+app.use(express.json());
+
+//Dynamic id / params
+app.get('/:id' , (request , response)  => {
+    response.send({
+     status : 200,
+     message : 'You Id Is ' + request.params.id
+ });
+ });
+
+// About ke route Jese hi aeega mera middleware chal jaega
+app.get('/about' , middleware , (request , response)  => {
+   response.send({
+    status : 200,
+    message : 'This is a About Page'
+});
+});
+
 
 app.listen(port , ()=>{
     console.log('Terminal Is On ' + port);
 })
+
+
 
 // asynchronous / non-blocking 
 // synchronous  / blocking 
@@ -29,8 +56,10 @@ app.listen(port , ()=>{
 // Javascript Client Side rendering
 // Node.js Server Side rendering
 
+// user ne request kya router ke pass aya phir request gae controller ke pass controller ne bheja service ke pass phir service ne response dya phir response gya controller ke pass controller ne response bhej dya user ko
 
-
+// request se service ke pass arha he service se response ja rha he
+//service /  route / controller
 
 
 
