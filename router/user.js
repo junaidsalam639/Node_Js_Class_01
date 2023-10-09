@@ -1,6 +1,6 @@
+
 const app = require('express');
 const route = app.Router();
-
 
 const user = [
     {
@@ -25,35 +25,60 @@ const user = [
     },
 ]
 
-route.get('/' , (req , res) =>{
-   res.status(200).send({
-     status : 200,
-     message : user,
-   })
+route.get('/' , (req , res) => {
+    res.status(200).send({
+        status : 200,
+        message : user
+    })
 })
 
-
-route.get('/:id' , (req , res) =>{
-    const users = user.find(data => data.id == req.params.id)
-    if (!users) {
-        res.status(500).send({ status: 500, error: true, msg: "user not found" })
+route.get('/:id' , (req , res) => {
+    const find = user.find(data => req.params.id == data.id);
+    if(find){
+        res.status(200).send({
+            status : 200,
+            message : find
+        })
     }
-    if (users) {
-        res.status(200).send({ status: 200, users })
+    if(!find){
+        res.status(200).send({
+            status : 500,
+            message : 'User Not Found'
+        })
     }
 })
 
-route.post('/' , (req , res) =>{
-   console.log(req.body);
-   user.push({id : user.length + 1  , name : req.body.name })
-    res.status(200).send({ status: 200, user : {name :req.body.name , id : user.length + 1 } });
-    console.log(user);
+route.post('/' , (req , res) => {
+    user.push({status : 200 , user : {id : user.length + 1 , name : req.body.name}});
+    res.status(200).send({
+        status : 200,
+        id : user.length + 1, 
+        message : req.body
+    })
 })
-
 
 module.exports = route
 
-
 // https://freefrontend.com/css-animated-backgrounds/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

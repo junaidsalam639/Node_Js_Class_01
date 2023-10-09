@@ -4,15 +4,15 @@ const userRoutes = require('./router/user');
 const morgan = require('morgan');
 const port = 3000;
 
-app.use(morgan('tiny'));
-app.use(express.json());
-app.use('/user' , userRoutes);
-
-
 const middleware = (request , response , next) => {
     console.log('I am Middleware');
     next();
 }
+
+app.use(morgan('tiny'));
+app.use(express.json());
+app.use('/user' , userRoutes);
+app.use(middleware);
 
 app.get('/' , (request , response)  => {
    response.send({
@@ -26,12 +26,12 @@ app.get('/' , (request , response)  => {
 app.get('/:id' , (request , response)  => {
     response.send({
      status : 200,
-     message : 'You Id Is ' + request.params.id
+     message : 'You Path Is ' + request.params.id
  });
  });
 
 // About ke route Jese hi aeega mera middleware chal jaega
-app.get('/about' , middleware , (request , response)  => {
+app.get('/about'  , (request , response)  => {
    response.send({
     status : 200,
     message : 'This is a About Page'
