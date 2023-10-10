@@ -48,6 +48,7 @@ route.get('/:id' , (req , res) => {
     }
 })
 
+// Add Krne ke Lye
 route.post('/' , (req , res) => {
      user.push({status : 200 , user : {id : user.length + 1 , name : req.body.name}});
     res.status(200).send({
@@ -57,31 +58,33 @@ route.post('/' , (req , res) => {
     })
 });
 
-
-route.delete('/:id' , (req , res) => {
-   user.splice(req.params.id - 1 , 1);
-   res.status(200).send({
-    status : 200,
-    message : user,
-   })
-})
-
-route.put('/:id' , (req , res) => {
-   if(user[req.params.id -1]){
-    user[req.params.id -1].name = 'Edit Change'
-    
+// Delete Krne ke Lye
+route.delete('/:id' , (req , res)=>{
+    user.splice(req.params.id - 1 , 1);
     res.status(200).send({
-     status : 200,
-     message : user,
+        status : 200,
+        message : user
     })
-}
-else{
-       res.status(200).send({
-        status : 500,
-        message : 'User Not Found',
-       })
-   }
 })
+
+
+// Update Krne ke Lye
+route.put('/:id' , (req , res)=>{
+    if([req.params.id - 1]){
+        user[req.params.id - 1].name = 'Edit Change'
+        res.status(200).send({
+            status : 200,
+            message : user
+        })
+    }
+    else{
+      res.send({
+        status : 500,
+        message : 'User Not Found'
+      })
+    }
+})
+
 
 module.exports = route
 
