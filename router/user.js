@@ -69,6 +69,7 @@ route.delete('/:id' , (req , res) => {
 route.put('/:id' , (req , res) => {
    if(user[req.params.id -1]){
     user[req.params.id -1].name = 'Edit Change'
+    
     res.status(200).send({
      status : 200,
      message : user,

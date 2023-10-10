@@ -67,8 +67,8 @@ app.listen(port , ()=>{
 
 
 
-//Get / Lene ke lye
+//Get / Dikhane ke lye
 //Put / Update Krne ke lye
-//Post / Post krne ke lye
+//Post / Add krne ke lye
 //Delete / Delete krne lye
 
