@@ -56,7 +56,12 @@ const student = [{
 
 
 app.get('/' , (req , res)=>{
-  res.send(student)
+  res.status(200).send(student)
+})
+
+app.get('/:id' , (req , res)=>{
+  const find = student.find(data => req.params.id == data.id)
+  res.status(200).send(find)
 })
 
 // add krne ke lye
@@ -67,8 +72,9 @@ app.post('/' , (req , res) =>{
     "last_name" : req.body.last_name,
     "email" : req.body.email
   })
-    res.send(student);
+    res.status(200).send(student);
 });
+
 
 // update ke lye
 app.put('/:id' , (req , res) =>{
@@ -77,14 +83,14 @@ app.put('/:id' , (req , res) =>{
   student[a].last_name = 'Ahmed'
   student[a].email = 'Zeeshan@gmail.com'
 
-    res.send(student);
+    res.status(200).send(student);
 });
 
 // delete krne ke lye
 app.delete('/:id' , (req , res) =>{
   let a = req.params.id.toString() - 1;
   student.splice(a , 1);
-  res.send(student)
+  res.status(200).send(student)
 });
 
 module.exports = app

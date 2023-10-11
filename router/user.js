@@ -50,13 +50,13 @@ route.get('/:id' , (req , res) => {
 
 // Add Krne ke Lye
 route.post('/' , (req , res) => {
-     user.push({status : 200 , user : {id : user.length + 1 , name : req.body.name}});
+     user.push({id : user.length + 1 , name : req.body.first_name + " " + req.body.last_name});
     res.status(200).send({
-        status : 200,
         id : user.length, 
-        message : req.body
+        name : req.body.first_name + " " + req.body.last_name
     })
 });
+
 
 // Delete Krne ke Lye
 route.delete('/:id' , (req , res)=>{
