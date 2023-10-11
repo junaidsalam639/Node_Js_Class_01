@@ -59,6 +59,7 @@ app.get('/' , (req , res)=>{
   res.send(student)
 })
 
+// add krne ke lye
 app.post('/' , (req , res) =>{
   student.push({
     "id" : student.length + 1,
@@ -77,6 +78,13 @@ app.put('/:id' , (req , res) =>{
   student[a].email = 'Zeeshan@gmail.com'
 
     res.send(student);
+});
+
+// delete krne ke lye
+app.delete('/:id' , (req , res) =>{
+  let a = req.params.id.toString() - 1;
+  student.splice(a , 1);
+  res.send(student)
 });
 
 module.exports = app
