@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const userRoutes = require('./router/user');
+const studentRoutes = require('./router/student');
 const morgan = require('morgan');
 const port = 3000;
 
@@ -13,6 +14,7 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.use('/user' , userRoutes);
 app.use(middleware);
+app.use('/student' , studentRoutes);
 
 app.get('/' , (request , response)  => {
    response.send({
