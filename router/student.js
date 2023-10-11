@@ -60,9 +60,30 @@ app.get('/' , (req , res)=>{
 })
 
 app.post('/' , (req , res) =>{
+  student.push({
+    "id" : student.length + 1,
+    "first_name" : req.body.first_name,
+    "last_name" : req.body.last_name,
+    "email" : req.body.email
+  })
     res.send(student);
-    console.log(req.body.last_name);
-})
+});
+
+// update ke lye
+app.put('/:id' , (req , res) =>{
+  let a = req.params.id.toString() - 1;
+  student[a].first_name = 'Zeeshan'
+  student[a].last_name = 'Ahmed'
+  student[a].email = 'Zeeshan@gmail.com'
+
+    res.send(student);
+});
 
 module.exports = app
+
+
+
+
+
+
 
